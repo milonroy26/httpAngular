@@ -2,7 +2,7 @@ import { Address } from "./address"
 import { Company } from "./company"
 
 export interface User_interface {
-    id: number,
+    id?: number,
     name: string,
     username: string,
     email: string,
