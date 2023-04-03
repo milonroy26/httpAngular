@@ -9,8 +9,11 @@ import { UserService } from '../../services/user.service';
 })
 export class HttpComponent {
 
+  public users: any[] = [];
+  readonly defaultImage = 'https://robohash.org/';
+
   private user:User_interface = {
-    'id': 5,
+    'id': 1,
     'name': 'jastin',
     'username': 'roy',
     'email': 'milon@gmail.com',
@@ -39,10 +42,10 @@ export class HttpComponent {
   ) { }
 
   ngOnInit(): void {
-    // this.onUdateUser();
     this.onUser();
-    this.onDelateUser();
-    // this.onCreateUser()
+    // this.onCreateUser();
+    // this.onUdateUser();
+    // this.onDelateUser();
   }
 
   // get request
@@ -50,31 +53,34 @@ export class HttpComponent {
     this.service.getUser()
     .subscribe({
       next: (data) => {
-        console.table(data);
+        this.users = data;
+        console.table(this.users);
       }
     })
   }
 
   // post request
-  onCreateUser():void{
-    this.service.createUser(this.user).subscribe(
-      (response) => console.log(response),
-      (error:any) => console.log(error),
-      () => console.log("done Create user")
-    );
+  onCreateUser(){
+    this.service.createUser(this.user)
+    .subscribe({
+      next: (data) => {
+        console.log('Post Request :', data);
+      } 
+    })
   }
 
   // put request
-  onUdateUser():void{
-    this.service.updateUser(this.user).subscribe(
-      (response) => console.log(response),
-      (error:any) => console.log(error),
-      () => console.log("done Update user")
-    );
+  onUdateUser(){
+    this.service.updateUser(this.user)
+    .subscribe({
+      next: (data) => {
+        console.log(data);
+      }
+    })
   }
 
   // patc request
-  onPatcUser():void{
+  onPatcUser():void {
     this.service.patcUser(this.user).subscribe(
       (response) => console.log(response),
       (error:any) => console.log(error),
@@ -84,11 +90,12 @@ export class HttpComponent {
 
   // delate request
   onDelateUser():void{
-    this.service.delateUser(3).subscribe(
-      (response) => console.log(response),
-      (error:any) => console.log(error),
-      () => console.log("done delate user")
-    );
+    this.service.delateUser(3)
+    .subscribe({
+      next: (data) => {
+        console.log('Delate request:', data);
+      }
+    })
   }
 
 }
