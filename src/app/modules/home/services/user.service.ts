@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { server } from 'src/app/app.config';
 import { User_interface } from '../interfaces/user';
 
@@ -10,10 +10,18 @@ import { User_interface } from '../interfaces/user';
 export class UserService {
   private server = server;
 
+  readonly defaultImage = 'https://robohash.org/';
+
   constructor(private http : HttpClient) { }
 
   getUser():Observable<User_interface[]> {
-    return this.http.get<User_interface[]>(`${this.server}/users`);
+    return this.http.get<User_interface[]>(`${this.server}/users`)
+    .pipe(
+      map(users => users.map(user => ({
+        ...user,
+        image: `${this.defaultImage}/${user.username.toLocaleUpperCase()}`
+      })))
+    )
   }
 
   // post request

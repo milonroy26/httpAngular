@@ -8,6 +8,7 @@
                 <thead>
                     <tr>
                       <th scope="col">#</th>
+                      <th scope="col">Image</th>
                       <th scope="col">Name</th>
                       <th scope="col">Username</th>
                       <th scope="col">Email</th>
@@ -16,8 +17,11 @@
                   </thead>
 
                   <tbody>
-                    <tr *ngFor="let user of users">
-                      <th scope="row">1</th>
+                    <tr *ngFor="let user of users, let i = index">
+                      <th scope="row"> {{i}} </th>
+                      <td>
+                        <img [src]="user.image" height="50" width="50" alt="">
+                      </td>
                       <td> {{user.name}} </td>
                       <td> {{user.username}} </td>
                       <td> {{user.email}} </td>

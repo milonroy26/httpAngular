@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
 })
 export class HttpComponent {
 
-  public users: any[] = [];
+  public users:User_interface[] = [];
   readonly defaultImage = 'https://robohash.org/';
 
   private user:User_interface = {
