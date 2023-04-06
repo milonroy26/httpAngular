@@ -43,7 +43,7 @@ export class HttpComponent {
 
   ngOnInit(): void {
     this.onUser();
-    // this.onCreateUser();
+    this.onCreateUser();
     // this.onUdateUser();
     // this.onDelateUser();
   }

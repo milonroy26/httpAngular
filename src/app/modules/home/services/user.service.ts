@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { server } from 'src/app/app.config';
 import { User_interface } from '../interfaces/user';
 
@@ -26,7 +26,8 @@ export class UserService {
 
   // post request
   createUser(user:User_interface):Observable<User_interface> {
-    return this.http.post<User_interface>(`${this.server}/users`, user);
+    return this.http.post<User_interface>(`${this.server}/users`, user)
+    .pipe(catchError(this.errorHandeller))
   }
 
   // put request
@@ -42,6 +43,10 @@ export class UserService {
   // delate request
   delateUser(id: number):Observable<void> {
     return this.http.delete<void>(`${this.server}/users/${id}`);
+  }
+
+  errorHandeller(error: HttpErrorResponse){
+    return throwError(() => error)
   }
 
 }
