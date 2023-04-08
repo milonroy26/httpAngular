@@ -1,1 +1,10 @@
 <app-header></app-header>
+
+<div class="container py-5">
+    <h2>Local storage</h2>
+    <p>Name: {{name}} </p>
+    <button (click)="callFnds()">Friends</button>
+    <ul *ngFor="let fnd of parseName">
+        <li> {{fnd}} </li>
+    </ul>
+</div>
