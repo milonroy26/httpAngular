@@ -8,15 +8,11 @@ import {
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class TestInterceptor implements HttpInterceptor {
+export class GlobalApiinterceptorInterceptor implements HttpInterceptor {
 
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const API_TOKEN = 'ApiToken293';
-    const requestCopy = request.clone({setHeaders: {API_KEY: API_TOKEN}, body: {hello: 'wold'} })
-    return next.handle(requestCopy);
+    return next.handle(request);
   }
-
-  
 }

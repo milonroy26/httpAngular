@@ -13,12 +13,22 @@ export class HomeComponent {
   public parseName:any;
 
   public users:{} = [
-    { "id": 1,
+    { 
+    "id": 1,
     "name": "Leanne Graham",
     "username": "Bret",
     "email": "Sincere@april.biz",
+    },
+    
+    { 
+      "id": 2,
+      "name": "Jeson",
+      "username": "Holder",
+      "email": "jeson@april.biz",
     }
   ]
+
+  public userName:any;
 
   constructor() { }
 
@@ -31,7 +41,9 @@ export class HomeComponent {
     // remove item
     localStorage.removeItem('id');
     // set json data
-    localStorage.setItem('users', JSON.stringify(this.users))
+    localStorage.setItem('users', JSON.stringify(this.users));
+    this.userName = localStorage.getItem('users');
+    console.log(this.userName);
   }
 
   callFnds(){

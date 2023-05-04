@@ -10,7 +10,7 @@ import { TestInterceptor } from './interceptor/test.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
